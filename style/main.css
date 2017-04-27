@@ -75,6 +75,9 @@ p {
 	margin-top: 2em;
 	line-height: 1.5em;
 }
+.tableHead {
+	font-weight: 600;
+}
 
 .layoutHeader{
 	margin: 2em 0 1.65em 0;
