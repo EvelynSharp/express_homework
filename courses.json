@@ -1,0 +1,44 @@
+[
+  {
+        "id": 101,
+        "name": "Amazon - FBA",
+        "base_price": 35,
+        "description": "Sell on Amazon using FBA",
+        "instructor": "Ann Wilsey",
+        "rating": "4.6",
+        "length": "4 hours",
+        "image":"/101.png"
+    },
+    {
+        "id": 102,
+        "name": "Complete Digital Marketing",
+        "base_price": 200,
+        "description": "Learn Online Marketing by Doing",
+        "instructor": "Matt Robertson",
+        "rating": "4.5",
+        "length": "19.5 hours",
+        "image":"/102.png"
+    },
+    {
+        "id": 103,
+        "name": "Python for Data Science ",
+        "base_price": 195,
+        "description": "Learn how to use NumPy, Pandas, Seaborn , Matplotlib",
+        "instructor": "John Pixton",
+        "rating": "4.6",
+        "length": "21.5 hours",
+        "image":"/103.png"
+    },
+    {
+        "id": 104,
+        "name": "Ultimate Drawing Course",
+        "base_price": 150,
+        "description": "Learn the #1 most important building block of all art",
+        "instructor": "Sarah Fullmer",
+        "rating": "4.5",
+        "length": "11 hours",
+        "image":"/104.png"
+    }
+
+
+]
