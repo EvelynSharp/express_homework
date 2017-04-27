@@ -4,6 +4,10 @@ var ejs = require('ejs');
 var app = express();
 var partials = require('express-partials');
 var expressLayouts = require('express-ejs-layouts');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/materialize/css'));
 app.use(express.static(__dirname + '/materialize/js'));
@@ -15,13 +19,13 @@ app.use(partials());
 
 app.get('/', function(request, response) {
   // response.sendFile(__dirname + '/index.html');
-  response.render('index.html.ejs',{ title: 'ES Online School' , layout: "layout.ejs"});
+  response.render('index.html.ejs',{ headerH1: 'ES Online School' , layout: "layout.ejs"});
 
 });
 
 app.get('/contact', function(request, response) {
   // response.sendFile(__dirname + '/contact.html');
-  response.render('contact.html.ejs',{ title: 'Contact' , layout: "layout.ejs"});
+  response.render('contact.html.ejs',{ headerH1: 'Contact' , layout: "layout.ejs"});
 });
 
 
@@ -31,7 +35,7 @@ app.get('/courses', function(request, response) {
  fs.readFile('courses.json', 'utf8', function(err, data) {
  var courses = JSON.parse(data);
  response.locals = { courses: courses };
- response.render('courses.ejs',{ title: 'Courses' , layout: "layout.ejs"});
+ response.render('courses.ejs',{ headerH1: 'Courses' , layout: "layout.ejs"});
  });
 });
 
@@ -46,7 +50,7 @@ app.get('/courses/:id', function(request, response) {
     })[0];
 
     response.locals = { course: course };
-    response.render('course.ejs',{ title: course.name , layout: "layout.ejs"});
+    response.render('course.ejs',{ headerH1: course.name , layout: "layout.ejs"});
  });
 });
 
@@ -59,26 +63,25 @@ app.get('/courses/:id/reviews', function(request, response) {
     })[0];
 
     response.locals = { reviews: reviews };
-    response.render('reviews.ejs',{ title: 'Reviews' , layout: "layout.ejs"});
+    response.render('reviews.ejs',{ headerH1: 'Reviews' , layout: "layout.ejs"});
  });
 });
 
-
-// app.post('/contact', function(req, res) {
-//   var firstName = req.body.firstName;
-//   var lastName = req.body.lastName;
-//   var emailAdd = req.body.emailAdd;
-//   var contactMessage = req.body.contactMessage;
-//   var userInfo = {
-//     firstName:firstName;
-//     lastName:lastName;
-//     emailAdd:emailAdd;
-//     contactMessage:contactMessage;
-//   };
-//   var userInfoStr = JSON.stringify(userInfo);
-//   fs.writeFile('userinfo.json', userInfoStr , 'utf-8');
-//   console.log(userInfoStr);
-// });
+app.post('/contact', function(req, res) {
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var emailAdd = req.body.emailAdd;
+  var contactMessage = req.body.contactMessage;
+  var userInfo = {
+    firstName:firstName,
+    lastName:lastName,
+    emailAdd:emailAdd,
+    contactMessage:contactMessage
+  };
+  var userInfoStr = JSON.stringify(userInfo);
+  fs.writeFile('userinfo.json', userInfoStr , 'utf-8');
+  res.render('contact.html.ejs',{ headerH1: 'Contact' , layout: "layout.ejs"});
+});
 
 app.listen(8000);
 console.log('running in http://localhost:8000')
