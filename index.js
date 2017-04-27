@@ -10,13 +10,20 @@ app.use(express.static(__dirname + '/materialize/js'));
 app.use(express.static(__dirname + '/style'));
 app.use(express.static(__dirname + '/images'));
 
+app.set('view engine', 'ejs');
+app.use(partials());
+
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/index.html');
+  // response.sendFile(__dirname + '/index.html');
+  response.render('index.html.ejs',{ title: 'ES Online School' , layout: "layout.ejs"});
+
 });
 
 app.get('/contact', function(request, response) {
-  response.sendFile(__dirname + '/contact.html');
+  // response.sendFile(__dirname + '/contact.html');
+  response.render('contact.html.ejs',{ title: 'Contact' , layout: "layout.ejs"});
 });
+
 
 
 
@@ -24,9 +31,12 @@ app.get('/courses', function(request, response) {
  fs.readFile('courses.json', 'utf8', function(err, data) {
  var courses = JSON.parse(data);
  response.locals = { courses: courses };
- response.render('courses.ejs');
+ response.render('courses.ejs',{ title: 'Courses' , layout: "layout.ejs"});
  });
 });
+
+
+
 
 app.get('/courses/:id', function(request, response) {
   fs.readFile('courses.json', 'utf8', function(err, data) {
@@ -36,12 +46,10 @@ app.get('/courses/:id', function(request, response) {
     })[0];
 
     response.locals = { course: course };
-    response.render('course.ejs');
+    response.render('course.ejs',{ title: course.name , layout: "layout.ejs"});
  });
 });
 
-app.set('view engine', 'ejs');
-app.use(partials());
 
 app.get('/courses/:id/reviews', function(request, response) {
   fs.readFile('reviews.json', 'utf8', function(err, data) {
@@ -51,14 +59,8 @@ app.get('/courses/:id/reviews', function(request, response) {
     })[0];
 
     response.locals = { reviews: reviews };
-    response.render('reviews.ejs',{ title: '' , layout: "layout.ejs"});
+    response.render('reviews.ejs',{ title: 'Reviews' , layout: "layout.ejs"});
  });
-});
-
-
-
-app.get('/example',function(request,response) {
-    response.render('example.ejs', { title: '' , layout: "layout.ejs"});
 });
 
 
