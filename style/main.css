@@ -111,9 +111,10 @@ p {
 .contact-form{
 	margin: 2em auto;
 }
-
-.get-name label {
+.userLb label {
 	display: inline-block;
+}
+.get-name label {
 	margin-right: 3em;
 	margin-left: 2em;
 }
@@ -123,20 +124,24 @@ p {
 	color: black;
 }
 
-.get-name .row label{
-	padding-left: 3em;
+.emailLb, .textLb {
 	display: block;
 }
-.get-name .row textarea {
-	margin-top:1em;
-	height: 10em;
-	padding:0.5em;
+
+.textLb {
+	margin-top: 3em;
+	margin-bottom: 3em;
 }
 
-.get-name .row button {
-	margin-top: 2em;
-	margin-left: 3em;
+.textLb textarea {
+	height: 10em;
 }
+
+.msgContainer button {
+	margin-left: 2em;
+	margin-bottom: 2em;
+}
+
 
 /* review page*/
 .backBtn {
